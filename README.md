@@ -1,5 +1,5 @@
 # gmail_picamera
-Raspberry Piで作るgmailで操作するPiCamera
+Raspberry Piで作るgmailで操作するPiCamera<br>
 ![動作例](https://github.com/y-tetsu/gmail_picamera/blob/master/image/circle.gif)
 
 ## 必要機材
