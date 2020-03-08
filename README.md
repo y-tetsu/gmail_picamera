@@ -1,5 +1,6 @@
 # gmail_picamera
 Raspberry Piで作るgmailで操作するPiCamera
+![動作例](https://github.com/y-tetsu/gmail_picamera/blob/master/image/circle.gif)
 
 ## 必要機材
 - ラズベリーパイ : Raspberry Pi 3 Model B    × 1
