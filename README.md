@@ -2,6 +2,9 @@
 Raspberry Piで作るgmailで操作するPiCamera<br>
 ![動作例](https://github.com/y-tetsu/gmail_picamera/blob/master/image/circle2.gif)
 
+## 機器接続図
+![接続図](https://github.com/y-tetsu/gmail_picamera/blob/master/image/connection.png)
+
 ## 必要機材
 - ラズベリーパイ : Raspberry Pi 3 Model B    × 1
 - ACアダプタ                                 × 1
@@ -12,9 +15,6 @@ Raspberry Piで作るgmailで操作するPiCamera<br>
 - カメラマウント                             × 1
 - 抵抗1KΩ                                   × 2
 - ジャンパー線                               × 適量
-
-## 機器接続図
-![接続図](https://github.com/y-tetsu/gmail_picamera/blob/master/image/connection.png)
 
 ## 動作確認環境
 - Raspbian GNU/Linux 9.8 (stretch)
@@ -32,5 +32,8 @@ $ sudo pigpiod
 
 ※編集中
 
-## 参考情報
+## 参考書籍
+- 「Raspberry Pi クックブック 第2版」Simon Monk著 水原 文訳 株式会社オライリー・ジャパン [ISBN978-4-87311-811-6](https://www.oreilly.co.jp/books/9784873118116/)
+
+## 参考サイト
 - 「SERVO MOTOR SG90 DATA SHEET」http://www.ee.ic.ac.uk/pcheung/teaching/DE1_EE/stores/sg90_datasheet.pdf
