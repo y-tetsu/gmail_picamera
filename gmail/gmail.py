@@ -6,15 +6,17 @@
 import os
 import json
 
+import crypt_setting
+
 
 class Gmail:
     """
     gmail-controller
     """
-    def __init__(self, setting_json):
-        self.setting = self.load_setting(setting_json)
+    def __init__(self, enc_setting, password):
+        self.setting = self.load_setting(enc_setting, password)
 
-    def load_setting(self, setting_json):
+    def load_setting(self, enc_setting, password):
         """
         loading setting file
         """
@@ -27,13 +29,17 @@ class Gmail:
             ]
         }
 
-        if os.path.isfile(setting_json):
-            with open(setting_json) as f:
-                setting = json.load(f)
+        if os.path.isfile(enc_setting):
+            with open(enc_setting, 'rb') as f:
+                bintext = crypt_setting.decrypt(f.read(), password)
+                setting = json.loads(bintext.decode())
 
         return setting
 
 
 if __name__ == '__main__':
-    gmail = Gmail('./setting.json')
+    import getpass
+
+    password = getpass.getpass('password > ')
+    gmail = Gmail('./enc_setting.json', password)
     print(gmail.setting)
