@@ -22,3 +22,10 @@ Raspberry Piで作るgmailで操作するPiCamera<br>
     - picamera
     - RPi.GPIO
     - pigpio
+
+## 使い方
+### pigpioのセットアップ
+事前に下記を実行しデーモンを立ち上げる。
+```
+$ sudo pigpiod
+```
