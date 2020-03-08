@@ -15,3 +15,10 @@ Raspberry Piで作るgmailで操作するPiCamera<br>
 
 ## 機器接続図
 ![接続図](https://github.com/y-tetsu/gmail_picamera/blob/master/image/connection.png)
+
+## 動作確認環境
+- Raspbian GNU/Linux 9.8 (stretch)
+- Python3.5.3
+    - picamera
+    - RPi.GPIO
+    - pigpio
