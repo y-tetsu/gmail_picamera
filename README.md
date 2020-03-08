@@ -25,7 +25,10 @@ Raspberry Piで作るgmailで操作するPiCamera<br>
 
 ## 使い方
 ### pigpioのセットアップ
-事前に下記を実行しデーモンを立ち上げる。
+事前に下記を実行しデーモンを立ち上げる。<br>
 ```
 $ sudo pigpiod
 ```
+
+## 参考情報
+- 「SERVO MOTOR SG90 DATA SHEET」http://www.ee.ic.ac.uk/pcheung/teaching/DE1_EE/stores/sg90_datasheet.pdf
