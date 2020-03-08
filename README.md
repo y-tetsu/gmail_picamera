@@ -12,3 +12,6 @@ Raspberry Piで作るgmailで操作するPiCamera<br>
 - カメラマウント                             × 1
 - 抵抗1KΩ                                   × 2
 - ジャンパー線                               × 適量
+
+## 機器接続図
+![接続図](https://github.com/y-tetsu/gmail_picamera/blob/master/image/connection.png)
