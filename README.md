@@ -30,6 +30,13 @@ Raspberry Piで作るgmailで操作するPiCamera<br>
 $ sudo pigpiod
 ```
 
+### h264形式をmp4に変換できるようにする
+下記でソフトをダウンロードする。<br>
+```
+$ sudo apt-get update
+$ sudo apt-get install -y gpac
+```
+
 ※編集中
 
 ## 参考書籍
@@ -37,3 +44,4 @@ $ sudo pigpiod
 
 ## 参考サイト
 - 「SERVO MOTOR SG90 DATA SHEET」http://www.ee.ic.ac.uk/pcheung/teaching/DE1_EE/stores/sg90_datasheet.pdf
+- 「Raspberry Piカメラモジュールで動画撮影・PCで見られるようにmp4に変換する方法」https://qiita.com/karaage0703/items/48b48680a35936ab83f3
