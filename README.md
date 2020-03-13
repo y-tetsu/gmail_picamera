@@ -37,6 +37,15 @@ $ sudo apt-get update
 $ sudo apt-get install -y gpac
 ```
 
+### Gmail APIを有効化する
+[Gmail APIとPythonを使ってメール送信を自動化する方法](https://valmore.work/automate-gmail-sending/)を参照してGoogle Cloud PlatformでGmail APIを使えるように設定する。<br>
+
+Gmail APIの使用に必要なパッケージをインストールする。<br>
+```
+pip3 install --upgrade google-api-python-client
+pip3 install --upgrade google-auth-oauthlib
+```
+
 ※編集中
 
 ## 参考書籍
@@ -45,3 +54,4 @@ $ sudo apt-get install -y gpac
 ## 参考サイト
 - 「SERVO MOTOR SG90 DATA SHEET」http://www.ee.ic.ac.uk/pcheung/teaching/DE1_EE/stores/sg90_datasheet.pdf
 - 「Raspberry Piカメラモジュールで動画撮影・PCで見られるようにmp4に変換する方法」https://qiita.com/karaage0703/items/48b48680a35936ab83f3
+- 「Gmail APIとPythonを使ってメール送信を自動化する方法」https://valmore.work/automate-gmail-sending/
