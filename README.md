@@ -5,6 +5,15 @@ Raspberry Piで作るGmailで操作するPiCamera<br>
 ## 概要
 Gmailの自分のメールアドレスにスマホなどから指令を送ると、カメラ撮影を開始し、動画を指令元へ送り返すRaspberry Piを使った装置。(作成中)
 
+## 動作確認環境
+- Raspbian GNU/Linux 9.8 (stretch)
+- Python3.5.3
+    - picamera
+    - RPi.GPIO
+    - pigpio
+    - google-api-python-client
+    - google-auth-oauthlib
+
 ## 必要機材
 - ラズベリーパイ : Raspberry Pi 3 Model B    × 1
 - ACアダプタ                                 × 1
@@ -18,13 +27,6 @@ Gmailの自分のメールアドレスにスマホなどから指令を送ると
 
 ## 機器接続図
 ![接続図](https://github.com/y-tetsu/gmail_picamera/blob/master/image/connection.png)
-
-## 動作確認環境
-- Raspbian GNU/Linux 9.8 (stretch)
-- Python3.5.3
-    - picamera
-    - RPi.GPIO
-    - pigpio
 
 ## 使い方
 ### pigpioのセットアップ
