@@ -57,7 +57,7 @@ class GmailPiCamera:
             "message": "MESSAGE"
         }
 
-        if os.path.isfile(gmail_setting):
+        if gmail_setting is not None and os.path.isfile(gmail_setting):
             with open(gmail_setting) as f:
                 setting = json.load(f)
 
