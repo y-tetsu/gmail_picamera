@@ -7,6 +7,7 @@ import os
 import json
 
 from devices import CameraMount
+from h264tomp4 import h264tomp4
 
 
 class GmailPiCamera:
@@ -23,7 +24,7 @@ class GmailPiCamera:
             setting = {
                 "VIDEO_WIDTH" : 240,
                 "VIDEO_HEIGHT" : 320,
-                "VIDEO_FILE_NAME" : './video.h264'
+                "VIDEO_FILE_NAME" : './video.mp4'
             }
 
             if setting_file is not None and os.path.isfile(setting_file):
@@ -39,10 +40,12 @@ class GmailPiCamera:
         width = self.setting["VIDEO_WIDTH"]
         height = self.setting["VIDEO_HEIGHT"]
         file_name = self.setting["VIDEO_FILE_NAME"]
+        tmp_file_name = './tmp.h264'
 
         with CameraMount() as camera:
-            camera.video_pan(width, height, file_name)
+            camera.video_pan(width, height, tmp_file_name)
             camera.center()
+            h264tomp4(tmp_file_name, file_name)
 
     def tilt(self):
         """
@@ -51,13 +54,15 @@ class GmailPiCamera:
         width = self.setting["VIDEO_WIDTH"]
         height = self.setting["VIDEO_HEIGHT"]
         file_name = self.setting["VIDEO_FILE_NAME"]
+        tmp_file_name = './tmp.h264'
 
         with CameraMount() as camera:
-            camera.video_tilt(width, height, file_name)
+            camera.video_tilt(width, height, tmp_file_name)
             camera.center()
+            h264tomp4(tmp_file_name, file_name)
 
 
 if __name__ == '__main__':
     gcamera = GmailPiCamera()
-    gcamera.pan()
+    #gcamera.pan()
     gcamera.tilt()
