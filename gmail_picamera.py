@@ -69,7 +69,7 @@ class GmailPiCamera:
             elif motion == 'tilt':
                 camera.video_tilt(width, height, tfname)
             else:
-                pass
+                raise ValueError("Invalid motion value!")
 
             camera.center()
             h264tomp4(tfname, fname)
