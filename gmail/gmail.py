@@ -9,6 +9,9 @@ import json
 
 import base64
 from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+from email.mime.base import MIMEBase
+from email import encoders
 from apiclient import errors
 
 from googleapiclient.discovery import build
@@ -24,7 +27,7 @@ class Gmail:
         self.setting = setting
         self.scope = ['https://www.googleapis.com/auth/gmail.send']
 
-    def send(self, to_index=None):
+    def send(self, to_index=None, attachment=None, filename=None):
         """
         send gmail
         """
@@ -46,10 +49,10 @@ class Gmail:
                 pickle.dump(creds, token)
 
         service = build('gmail', 'v1', credentials=creds)
-        message = self._create_message(to_index)
+        message = self._create_message(to_index, attachment, filename)
         self._send_message(service, 'me', message)
 
-    def _create_message(self, to_index):
+    def _create_message(self, to_index, attachment, filename):
         """
         create mesasge
         """
@@ -58,10 +61,31 @@ class Gmail:
         subject = self.setting["subject"]
         message_text = self.setting["message"]
 
-        message = MIMEText(message_text)
-        message['from'] = sender
-        message['to'] = to
-        message['subject'] = subject
+        if str(attachment).endswith('.mp4'):
+            message = MIMEMultipart()
+            message['from'] = sender
+            message['to'] = to
+            message['subject'] = subject
+
+            msg_txt = MIMEText(message_text)
+            message.attach(msg_txt)
+
+            try:
+                msg = MIMEBase('video', 'mp4')
+                file_location = os.path.abspath(attachment)
+                fattachment = open(file_location, "rb")
+                msg.set_payload((fattachment).read())
+                encoders.encode_base64(msg)
+                msg.add_header("Content-Disposition", "attachment", filename=filename)
+                message.attach(msg)
+            except:
+                print("There is no file here")
+        else:
+            message = MIMEText(message_text)
+            message['from'] = sender
+            message['to'] = to
+            message['subject'] = subject
+
         encode_message = base64.urlsafe_b64encode(message.as_bytes())
 
         return {'raw': encode_message.decode()}
