@@ -3,7 +3,7 @@ Raspberry Piで作るGmailで操作するPiCamera<br>
 ![動作例](https://github.com/y-tetsu/gmail_picamera/blob/master/image/circle2.gif)
 
 ## 概要
-Gmailの自分のメールアドレスに指令を送ると、カメラ撮影を開始し、動画を指令元へ送り返すRaspberry Piを使った装置。(作成中)
+Gmailの自分のメールアドレスにスマホなどから指令を送ると、カメラ撮影を開始し、動画を指令元へ送り返すRaspberry Piを使った装置。(作成中)
 
 ## 必要機材
 - ラズベリーパイ : Raspberry Pi 3 Model B    × 1
