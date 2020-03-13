@@ -28,7 +28,7 @@ Gmailの自分のメールアドレスにスマホなどから指令を送ると
 ## 機器接続図
 ![接続図](https://github.com/y-tetsu/gmail_picamera/blob/master/image/connection.png)
 
-## 使い方
+## 下準備
 ### pigpioのセットアップ
 事前に下記を実行しデーモンを立ち上げる。<br>
 ```
