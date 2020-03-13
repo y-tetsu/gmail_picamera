@@ -20,31 +20,9 @@ class Gmail:
     """
     gmail-controller
     """
-    def __init__(self, setting_file):
-        self.setting = self.load_setting(setting_file)
+    def __init__(self, setting):
+        self.setting = setting
         self.scope = ['https://www.googleapis.com/auth/gmail.send']
-
-    def load_setting(self, setting_file):
-        """
-        loading setting file
-        """
-        setting = {
-            "sender_address": "SENDER_ADDRESS",
-            "to_addresses": [
-                "TO_ADDRESS1",
-                "TO_ADDRESS2"
-            ],
-            "token_pickle": "TOKEN_PICKLE",
-            "credential": "CREDENTIAL",
-            "subject": "SUBJECT",
-            "message": "MESSAGE"
-        }
-
-        if os.path.isfile(setting_file):
-            with open(setting_file) as f:
-                setting = json.load(f)
-
-        return setting
 
     def send(self, to_index=None):
         """
@@ -101,5 +79,23 @@ class Gmail:
 
 
 if __name__ == '__main__':
-    gmail = Gmail('./setting.json')
+    setting = {
+        "sender_address": "SENDER_ADDRESS",
+        "to_addresses": [
+            "TO_ADDRESS1",
+            "TO_ADDRESS2"
+        ],
+        "token_pickle": "TOKEN_PICKLE",
+        "credential": "CREDENTIAL",
+        "subject": "SUBJECT",
+        "message": "MESSAGE"
+    }
+
+    setting_file = './setting.json'
+
+    if os.path.isfile(setting_file):
+        with open(setting_file) as f:
+            setting = json.load(f)
+
+    gmail = Gmail(setting)
     gmail.send(to_index=0)
