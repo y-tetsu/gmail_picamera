@@ -4,10 +4,14 @@
 Control of Camera Mount using PiCamera V2 and two SG90(for pan and tilt)
 """
 
+import sys
+sys.path.append('../')
+
 import time
 import math
-from picamera_v2 import PiCameraV2
-from sg90 import SG90, SG90HW
+
+from devices.picamera_v2 import PiCameraV2
+from devices.sg90 import Sg90, Sg90hw
 
 STEP_WAIT = 0.005
 SWING_INTERVAL = 0.5
@@ -47,14 +51,14 @@ class CameraMount():
             self.camera = PiCameraV2()
 
             if self.hwp:
-                self.servop = SG90HW(self.gpiop)
+                self.servop = Sg90hw(self.gpiop)
             else:
-                self.servop = SG90(self.gpiop)
+                self.servop = Sg90(self.gpiop)
 
             if self.hwt:
-                self.servot = SG90HW(self.gpiot)
+                self.servot = Sg90hw(self.gpiot)
             else:
-                self.servot = SG90(self.gpiot)
+                self.servot = Sg90(self.gpiot)
 
         except:
             self.cleanup()

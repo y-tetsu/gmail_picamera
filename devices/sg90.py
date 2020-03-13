@@ -32,7 +32,7 @@ PERCENT = 100
 MEGA = 1000000
 
 
-class SG90():
+class Sg90():
     """
     Control of SG90 by Software-PWM
       -----------------------------
@@ -129,7 +129,7 @@ class SG90():
         return duty_ratio
 
 
-class SG90HW(SG90):
+class Sg90hw(Sg90):
     """
     Control of SG90 by Hardwar-PWM
       -----------------------------
@@ -177,13 +177,13 @@ class SG90HW(SG90):
 
 
 if __name__ == '__main__':
-    with SG90(18) as s1, SG90(19) as s2:
+    with Sg90(18) as s1, Sg90(19) as s2:
         s1.center()
         s2.center()
         s1.swing()
         s2.swing()
 
-    with SG90HW(18) as s1, SG90HW(19) as s2:
+    with Sg90hw(18) as s1, Sg90hw(19) as s2:
         s1.center()
         s2.center()
         s1.swing()
