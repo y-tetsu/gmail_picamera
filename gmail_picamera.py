@@ -22,6 +22,8 @@ class GmailPiCamera:
         self.vsetting = self._load_video_setting(video_setting)
         self.gsetting = self._load_gmail_setting(gmail_setting)
         self.csetting = self._load_command_setting(command_setting)
+        self.history_json = './history.json'
+        self.history = self._load_history()
         self.fname = './video.mp4'
         self.tfname = './tmp.h264'
         self.video_store = './videos'
@@ -62,7 +64,7 @@ class GmailPiCamera:
             with open(setting_json) as f:
                 setting = json.load(f)
 
-            return setting
+        return setting
 
     def _load_command_setting(self, setting_json):
         """
@@ -78,7 +80,29 @@ class GmailPiCamera:
             with open(setting_json) as f:
                 setting = json.load(f)
 
-            return setting
+        return setting
+
+    def _load_history(self):
+        """
+        loading history
+        """
+        setting = {}
+        setting_json = self.history_json
+
+        if setting_json is not None and os.path.isfile(setting_json):
+            with open(setting_json) as f:
+                setting = json.load(f)
+
+        return setting
+
+    def _save_history(self):
+        """
+        save history
+        """
+        setting_json = self.history_json
+
+        with open(setting_json, 'w') as f:
+            json.dump(self.history, f)
 
     def video(self, motion):
         """
@@ -146,13 +170,20 @@ class GmailPiCamera:
 if __name__ == '__main__':
     gcamera = GmailPiCamera('./video_setting.json', './gmail_setting.json', './command_setting.json')
 
-    # receive
-    date, message = gcamera.receive(gcamera.gsetting['user_addresses'][0])
+    for index, address in enumerate(gcamera.gsetting['user_addresses']):
+        # receive
+        date, message = gcamera.receive(address)
 
-    # parse command
-    command = parse_command(gcamera.csetting, message)
-    print(command)
+        # check history
+        if not (address in gcamera.history and date == gcamera.history[address]):
+            # save history
+            gcamera.history[address] = date
+            gcamera._save_history()
 
-    # pan test
-    #gcamera.video('pan')
-    #gcamera.send(0)
+            # parse command
+            command = parse_command(gcamera.csetting, message)
+            print(command)
+
+            if command:
+                gcamera.video(command)
+                gcamera.send(index)

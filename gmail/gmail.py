@@ -141,7 +141,7 @@ class Gmail:
             topid = msg['id']
             msg = messages.get(userId='me', id=topid).execute()
             headers = msg['payload']['headers']
-            date = None
+            date = ""
 
             for header in headers:
                 if header['name'] == 'Date':
@@ -155,6 +155,8 @@ class Gmail:
 
             if message:
                 break
+
+            date = ""
 
         return date, message
 
