@@ -49,6 +49,7 @@ Gmail APIの使用に必要なパッケージをインストールする。<br>
 ```
 pip3 install --upgrade google-api-python-client
 pip3 install --upgrade google-auth-oauthlib
+pip3 install --upgrade oauth2client
 ```
 
 ※編集中
