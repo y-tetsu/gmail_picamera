@@ -166,6 +166,12 @@ class GmailPiCamera:
 
         return date, message
 
+    def parse(self, message=None):
+        """
+        parse command
+        """
+        return parse_command(self.csetting, message)
+
 
 if __name__ == '__main__':
     gcamera = GmailPiCamera('./video_setting.json', './gmail_setting.json', './command_setting.json')
@@ -181,7 +187,7 @@ if __name__ == '__main__':
             gcamera._save_history()
 
             # parse command
-            command = parse_command(gcamera.csetting, message)
+            command = gcamera.parse(message)
             print(command)
 
             # execute command
