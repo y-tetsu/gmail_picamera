@@ -184,6 +184,7 @@ if __name__ == '__main__':
             command = parse_command(gcamera.csetting, message)
             print(command)
 
+            # execute command
             if command:
                 gcamera.video(command)
                 gcamera.send(index)
