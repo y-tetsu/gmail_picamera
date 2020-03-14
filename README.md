@@ -13,6 +13,7 @@ Gmailの自分のメールアドレスにスマホなどから指令を送ると
     - pigpio
     - google-api-python-client
     - google-auth-oauthlib
+    - oauth2client
 
 ## 必要機材
 - ラズベリーパイ : Raspberry Pi 3 Model B    × 1
