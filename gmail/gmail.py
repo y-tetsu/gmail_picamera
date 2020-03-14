@@ -75,9 +75,9 @@ class Gmail:
                 creds = tools.run_flow(flow, store)
 
             service = build('gmail', 'v1', http=creds.authorize(Http()))
-            message = self._get_message(service, from_address)
+            date, message = self._get_message(service, from_address)
 
-        return message
+        return date, message
 
     def _create_message(self, to_index, attachment, filename):
         """
@@ -132,15 +132,32 @@ class Gmail:
         """
         get mesasge
         """
+        message = ""
         messages = service.users().messages()
-        msg_list = messages.list(userId='me', maxResults=10).execute()
+        msg_list = messages.list(userId='me', maxResults=5).execute()
 
+        # get first message
         for msg in msg_list['messages']:
             topid = msg['id']
             msg = messages.get(userId='me', id=topid).execute()
+            headers = msg['payload']['headers']
+            date = None
 
-            if msg['labelIds'][0] == "UNREAD":
-                return msg['snippet']
+            for header in headers:
+                if header['name'] == 'Date':
+                    date = header['value']
+                if header['name'] == 'From':
+                    if header['value'] == "<" + from_address + ">":
+                        print(header['value'])
+                        print(date, msg['snippet'])
+                        message = msg['snippet']
+                        break
+
+            if message:
+                break
+
+        return date, message
+
 
 if __name__ == '__main__':
     setting = {
@@ -163,7 +180,6 @@ if __name__ == '__main__':
     gmail = Gmail(setting)
 
     for index, user_address in enumerate(gmail.setting["user_addresses"]):
-        message = gmail.receive(user_address)
-        print(message)
-
-    gmail.send(to_index=0)
+        date, message = gmail.receive(user_address)
+        if message:
+            gmail.send(to_index=0)
