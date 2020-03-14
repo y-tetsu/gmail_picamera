@@ -111,15 +111,26 @@ class GmailPiCamera:
         """
         send gmail
         """
-        if to_index is not None:
-            if self.now is not None:
-                gmail = Gmail(self.gsetting)
-                gmail.send(to_index, self.fname, self.now + '.mp4')
+        if self.now is not None:
+            gmail = Gmail(self.gsetting)
+            gmail.send(to_index, self.fname, self.now + '.mp4')
+
+    def receive(self, from_address=None):
+        """
+        receive gmail
+        """
+        gmail = Gmail(self.gsetting)
+        date, message = gmail.receive(from_address)
+
+        return date, message
 
 
 if __name__ == '__main__':
     gcamera = GmailPiCamera('./video_setting.json', './gmail_setting.json')
 
+    # receive
+    date, message = gcamera.receive(gcamera.gsetting['user_addresses'][0])
+
     # pan test
-    gcamera.video('pan')
-    gcamera.send(0)
+    #gcamera.video('pan')
+    #gcamera.send(0)
