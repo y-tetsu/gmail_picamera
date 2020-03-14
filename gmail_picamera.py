@@ -47,11 +47,10 @@ class GmailPiCamera:
         """
         setting = {
             "sender_address": "SENDER_ADDRESS",
-            "to_addresses": [
-                "TO_ADDRESS1",
-                "TO_ADDRESS2"
+            "user_addresses": [
+                "USER_ADDRESS1",
+                "USER_ADDRESS2"
             ],
-            "token_pickle": "TOKEN_PICKLE",
             "credential": "CREDENTIAL",
             "subject": "SUBJECT",
             "message": "MESSAGE"
