@@ -25,32 +25,39 @@ class Gmail:
     """
     def __init__(self, setting):
         self.setting = setting
-        self.scope = ['https://www.googleapis.com/auth/gmail.send']
 
     def send(self, to_index=None, attachment=None, filename=None):
         """
         send gmail
         """
+        service = self._build_service(['https://www.googleapis.com/auth/gmail.send'])
+        message = self._create_message(to_index, attachment, filename)
+        self._send_message(service, 'me', message)
+
+    def _build_service(self, scope):
+        """
+        build service
+        """
         token_pickle = self.setting["token_pickle"]
         credential = self.setting["credential"]
 
         creds = None
+
         if os.path.exists(token_pickle):
             with open(token_pickle, 'rb') as token:
                 creds = pickle.load(token)
+
         if not creds or not creds.valid:
             if creds and creds.expired and creds.refresh_token:
                 creds.refresh(Request())
             else:
-                flow = InstalledAppFlow.from_client_secrets_file(credential, self.scope)
+                flow = InstalledAppFlow.from_client_secrets_file(credential, scope)
                 creds = flow.run_local_server()
 
             with open(token_pickle, 'wb') as token:
                 pickle.dump(creds, token)
 
-        service = build('gmail', 'v1', credentials=creds)
-        message = self._create_message(to_index, attachment, filename)
-        self._send_message(service, 'me', message)
+        return build('gmail', 'v1', credentials=creds)
 
     def _create_message(self, to_index, attachment, filename):
         """
