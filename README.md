@@ -62,3 +62,4 @@ pip3 install --upgrade oauth2client
 - 「SERVO MOTOR SG90 DATA SHEET」http://www.ee.ic.ac.uk/pcheung/teaching/DE1_EE/stores/sg90_datasheet.pdf
 - 「Raspberry Piカメラモジュールで動画撮影・PCで見られるようにmp4に変換する方法」https://qiita.com/karaage0703/items/48b48680a35936ab83f3
 - 「Gmail APIとPythonを使ってメール送信を自動化する方法」https://valmore.work/automate-gmail-sending/
+- 「Pythonを使ってGmail APIからメールを取得する」https://qiita.com/orikei/items/73dc1ccc95d1872ab1cf
