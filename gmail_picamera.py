@@ -11,21 +11,23 @@ import shutil
 from devices import CameraMount
 from h264tomp4 import h264tomp4
 from gmail import Gmail
+from command import parse_command
 
 
 class GmailPiCamera:
     """
     gmail_picamera
     """
-    def __init__(self, video_setting=None, gmail_setting=None):
+    def __init__(self, video_setting=None, gmail_setting=None, command_setting=None):
         self.vsetting = self._load_video_setting(video_setting)
         self.gsetting = self._load_gmail_setting(gmail_setting)
+        self.csetting = self._load_command_setting(command_setting)
         self.fname = './video.mp4'
         self.tfname = './tmp.h264'
         self.video_store = './videos'
         self.now = None
 
-    def _load_video_setting(self, video_setting):
+    def _load_video_setting(self, setting_json):
         """
         loading setting file
         """
@@ -35,13 +37,13 @@ class GmailPiCamera:
             "store": False
         }
 
-        if video_setting is not None and os.path.isfile(video_setting):
-           with open(video_setting) as f:
+        if setting_json is not None and os.path.isfile(setting_json):
+           with open(setting_json) as f:
               setting = json.load(f)
 
         return setting
 
-    def _load_gmail_setting(self, gmail_setting):
+    def _load_gmail_setting(self, setting_json):
         """
         loading setting file
         """
@@ -56,8 +58,24 @@ class GmailPiCamera:
             "message": "MESSAGE"
         }
 
-        if gmail_setting is not None and os.path.isfile(gmail_setting):
-            with open(gmail_setting) as f:
+        if setting_json is not None and os.path.isfile(setting_json):
+            with open(setting_json) as f:
+                setting = json.load(f)
+
+            return setting
+
+    def _load_command_setting(self, setting_json):
+        """
+        loading setting file
+        """
+        setting = {
+            "execute": "EXECUTE_COMMAND",
+            "pan": "PAN_COMMAND",
+            "tilt": "TILT_COMMAND"
+        }
+
+        if setting_json is not None and os.path.isfile(setting_json):
+            with open(setting_json) as f:
                 setting = json.load(f)
 
             return setting
@@ -126,10 +144,14 @@ class GmailPiCamera:
 
 
 if __name__ == '__main__':
-    gcamera = GmailPiCamera('./video_setting.json', './gmail_setting.json')
+    gcamera = GmailPiCamera('./video_setting.json', './gmail_setting.json', './command_setting.json')
 
     # receive
     date, message = gcamera.receive(gcamera.gsetting['user_addresses'][0])
+
+    # parse command
+    command = parse_command(gcamera.csetting, message)
+    print(command)
 
     # pan test
     #gcamera.video('pan')
