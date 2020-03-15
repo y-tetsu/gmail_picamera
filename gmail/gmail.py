@@ -134,7 +134,7 @@ class Gmail:
         """
         message = ""
         messages = service.users().messages()
-        msg_list = messages.list(userId='me', maxResults=5).execute()
+        msg_list = messages.list(userId='me', maxResults=20).execute()
 
         # get first message
         for msg in msg_list['messages']:
