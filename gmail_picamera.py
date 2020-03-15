@@ -95,7 +95,7 @@ class GmailPiCamera:
 
         return setting
 
-    def _save_history(self):
+    def save_history(self):
         """
         save history
         """
@@ -184,7 +184,7 @@ if __name__ == '__main__':
         if not (address in gcamera.history and date == gcamera.history[address]):
             # save history
             gcamera.history[address] = date
-            gcamera._save_history()
+            gcamera.save_history()
 
             # parse command
             command = gcamera.parse(message)
