@@ -43,6 +43,22 @@ $ sudo apt-get update
 $ sudo apt-get install -y gpac
 ```
 
+### 設定ファイル準備
+#### Gmail用
+下記内容のファイル(gmail_setting.json)をrun.shと同じフォルダに配置する。<br>
+```
+{
+    "sender_address": "Gmailのアドレス",
+    "user_addresses": [
+        "コマンド送信元のメールアドレス1",
+        "コマンド送信元のメールアドレス2"
+    ],
+    "credential": "Google Cloud Platformからダウンロードした認証情報(JSONファイル)へのパス",
+    "subject": "メールのタイトル",
+    "message": "メールの本文"
+}
+```
+
 ### Gmail APIを有効化する
 Gmail APIの使用に必要なパッケージをインストールする。<br>
 ```
