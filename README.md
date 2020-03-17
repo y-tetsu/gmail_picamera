@@ -1,5 +1,6 @@
 # gmail_picamera
 Raspberry Piで作るGmailで操作するPiCamera<br>
+[ [English](https://github.com/y-tetsu/gmail_picamera/blob/master/README.md) | [日本語](https://github.com/y-tetsu/gmail_picamera/blob/master/README.ja.md)]
 ![動作例](https://github.com/y-tetsu/gmail_picamera/blob/master/image/circle2.gif)
 
 ## 概要
