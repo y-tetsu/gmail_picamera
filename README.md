@@ -1,5 +1,5 @@
 # gmail_picamera
-PiCamera operated with Gmail made with Raspberry Pi<br>
+PiCamera operated with Gmail<br>
 [ [English](https://github.com/y-tetsu/gmail_picamera/blob/master/README.md) | [日本語](https://github.com/y-tetsu/gmail_picamera/blob/master/README.ja.md)]<br>
 ![Image](https://github.com/y-tetsu/gmail_picamera/blob/master/image/circle2.gif)
 
